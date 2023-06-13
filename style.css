@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+}
+
+.cbutton {
+    background-color: #ffffff00;
+    border: none;
+    color: #fff;
+}
+
+.header {
+    height: 45px;
+}
+
+.tab-closer:hover {
+    color: red;
+}

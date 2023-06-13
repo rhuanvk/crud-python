@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Bootstrap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+            integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+            crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- container principal -->
+    <div class="container-fluid h-100 bg-secondary-subtle d-flex align-items-end p-0">
+        <!-- container da sidebar -->
+        <div class="col-2 col-x col-sm-3 col-md-3 col-lg-2 text-bg-primary h-100">
+            <a href="#" class="navbar-brand d-flex justify-content-center pt-4">
+                <img src="./img/logo.png" alt="Logo" width="100px"></a>
+            <nav class="navbar pt-5 ps-3 d-flex flex-column h-75">
+                <ul class="navbar-nav me-3">
+                    <li class="nav-item p-1 m-1">
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal" data-bs-target="#cadastros">
+                            <img src="./img/cadastros.png" alt="Cadastros" width="30px">
+                            <span class="ps-2">Cadastros</span>
+                        </button>
+                    </li>
+                    <li class="nav-item p-1 m-1">
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal" data-bs-target="#financeiro">
+                            <img src="./img/financeiro.png" alt="Financeiro" width="30px">
+                            <span class="ps-2">Financeiro</span>
+                        </button>
+                    </li>
+                    <li class="nav-item p-1 m-1">
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal" data-bs-target="#relatorios">
+                            <img src="./img/relatorios.png" alt="Relatórios" width="30px">
+                            <span class="ps-2">Relatórios</span>
+                        </button>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav me-3">
+                    <li class="nav-item p-1 m-1">
+                        <button type="button" class="btn cbutton">
+                            <img src="./img/notificacoes.png" alt="Notificações" width="30px">
+                            <span class="ps-2">Notificações</span>
+                        </button>
+                    </li>
+                    <li class="nav-item p-1 m-1">
+                        <button type="button" class="btn cbutton">
+                            <img src="./img/configuracoes.png" alt="Configurações" width="30px">
+                            <span class="ps-2">Configurações</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- modais -->
+
+        <!-- modal do botão cadastros -->
+        <div class="modal fade" id="cadastros" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Cadastros</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-grid">
+                        <div class="row gap-3 m-1">
+                            <button type="button"
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-pessoas-tab" id="teste">
+                                <img src="./img/pessoas.png" alt="Pessoas" width="40px">
+                                <span class="ps-1">Pessoas</span>
+                            </button>
+
+                            <button type="button"
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-veiculos-tab">
+                                <img src="./img/veiculos.png" alt="Veículos" width="40px">
+                                <span class="ps-2">Veículos</span>
+                            </button>
+
+                            <button type="button"
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-enderecos-tab">
+                                <img src="./img/enderecos.png" alt="Endereços" width="40px">
+                                <span class="ps-1">Endereços</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal do botão financeiro -->
+        <div class="modal fade" id="financeiro" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Financeiro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-grid">
+                        <div class="row gap-3 m-1">
+
+                            <button
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-pagar-tab">
+                                <img src="./img/pagar.png" alt="Contas a pagar" width="40px">
+                                <span class="ps-1">Contas a pagar</span>
+                            </button>
+
+                            <button
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-receber-tab">
+                                <img src="./img/receber.png" alt="Contas a receber" width="40px">
+                                <span class="ps-1">Contas a receber</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal do botão relatórios -->
+        <div class="modal fade" id="relatorios" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Relatórios</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-grid">
+                        <div class="row gap-3 m-1">
+
+                            <button
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 py-3">
+                                <img src="./img/cadastros.png" alt="Contas a pagar" width="25px">
+                                <span class="ps-2">Cadastros</span>
+                            </button>
+
+                            <button
+                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 py-3">
+                                <img src="./img/financeiro.png" alt="Contas a receber" width="25px">
+                                <span class="ps-2">Financeiro</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- container do lado direito da tela -->
+        <div class="container-fluid border h-100">
+            <!-- header (tabs) -->
+            <ul class="nav nav-tabs header" id="tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="tab-inicio" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                </li>
+
+                <!-- tabs do menu cadastros -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab" id="cad-pessoas-tab" data-bs-toggle="tab" data-bs-target="#cad-pessoas-cont"
+                            type="button" role="tab" aria-controls="#cad-pessoas-cont" aria-selected="false">
+                        <span>
+                            Cad. Pessoas
+                        </span>
+                        <span class="ms-3 tab-closer">⨯</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab" id="cad-veiculos-tab" data-bs-toggle="tab" data-bs-target="#cad-veiculos-cont"
+                            type="button" role="tab" aria-controls="#cad-veiculos-cont" aria-selected="false" hidden>
+                        Cad. Veículos
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab" id="cad-enderecos-tab" data-bs-toggle="tab" data-bs-target="#cad-enderecos-cont"
+                            type="button" role="tab" aria-controls="#cad-enderecos-cont" aria-selected="false" hidden>
+                        Cad. Endereços
+                    </button>
+                </li>
+
+                <!-- tabs do menu financeiro -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab" id="fin-pagar-tab" data-bs-toggle="tab" data-bs-target="#fin-pagar-cont" type="button"
+                            role="tab" aria-controls="#fin-pagar-cont" aria-selected="false" hidden>
+                        Contas a pagar
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tab" id="fin-receber-tab" data-bs-toggle="tab" data-bs-target="#fin-receber-cont" type="button"
+                            role="tab" aria-controls="#fin-receber-cont" aria-selected="false" hidden>
+                        Contas a receber
+                    </button>
+                </li>
+            </ul>
+
+            <!-- conteúdo escondido das tabs -->
+            <div class="tab-pane fade h-100" id="cad-pessoas-cont" role="tabpanel" aria-labelledby="profile-tab"
+                 tabindex="0">
+                <h1>testando</h1>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
