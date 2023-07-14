@@ -26,7 +26,7 @@
     <!-- container principal -->
     <div class="container-fluid h-100 bg-secondary-subtle d-flex align-items-end p-0">
         <!-- container da sidebar -->
-        <div class="col-2 col-x col-sm-3 col-md-3 col-lg-2 text-bg-primary h-100">
+        <div class="col-2 col-x col-sm-3 col-md-3 col-lg-2 bg-primary h-100">
             <a href="#" class="navbar-brand d-flex justify-content-center pt-4">
                 <img src="./img/logo.png" alt="Logo" width="100px"></a>
             <nav class="navbar pt-5 ps-3 d-flex flex-column h-75">
@@ -53,7 +53,7 @@
 
                 <ul class="navbar-nav me-3">
                     <li class="nav-item p-1 m-1">
-                        <button type="button" class="btn cbutton">
+                        <button type="button" class="btn cbutton pe-4">
                             <img src="./img/notificacoes.png" alt="Notificações" width="30px">
                             <span class="ps-2">Notificações</span>
                         </button>
@@ -68,37 +68,25 @@
             </nav>
         </div>
 
-        <!-- modais -->
+        <!-- modais dos botões da sidebar -->
 
         <!-- modal do botão cadastros -->
         <div class="modal fade" id="cadastros" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-secondary-subtle">
-                    <div class="modal-header">
+                    <div class="modal-header bg-primary text-white">
                         <h1 class="modal-title fs-5">Cadastros</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                id="cadastros-bt"></button>
                     </div>
-                    <div class="modal-body d-grid">
-                        <div class="row gap-3 m-1">
+                    <div class="modal-body d-flex justify-content-center">
+                        <div class="row w-50 px-4">
                             <button type="button"
-                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
-                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-pessoas-tab" id="teste">
+                                    class="d-flex align-items-center justify-content-center col btn btn-primary cbutton text-bg-primary w-25 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-pessoas-tab"
+                                    id="cad-pessoas-toggle">
                                 <img src="./img/pessoas.png" alt="Pessoas" width="40px">
                                 <span class="ps-1">Pessoas</span>
-                            </button>
-
-                            <button type="button"
-                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
-                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-veiculos-tab">
-                                <img src="./img/veiculos.png" alt="Veículos" width="40px">
-                                <span class="ps-2">Veículos</span>
-                            </button>
-
-                            <button type="button"
-                                    class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
-                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="cad-enderecos-tab">
-                                <img src="./img/enderecos.png" alt="Endereços" width="40px">
-                                <span class="ps-1">Endereços</span>
                             </button>
                         </div>
                     </div>
@@ -110,23 +98,23 @@
         <div class="modal fade" id="financeiro" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-secondary-subtle">
-                    <div class="modal-header">
+                    <div class="modal-header bg-primary text-white">
                         <h1 class="modal-title fs-5">Financeiro</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body d-grid">
-                        <div class="row gap-3 m-1">
-
-                            <button class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
-                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-pagar-tab">
-                                <img src="./img/pagar.png" alt="Contas a pagar" width="40px">
-                                <span class="ps-1">Contas a pagar</span>
+                    <div class="modal-body d-flex justify-content-center">
+                        <div class="row d-flex flex-row w-75 gap-3 px-4">
+                            <button class="d-flex align-items-center justify-content-center col btn btn-primary cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-contas-tab"
+                                    id="fin_contas_toggle">
+                                <img src="./img/receber.png" alt="Receitas" width="40px">
+                                <span class="ps-1">Receitas</span>
                             </button>
-
-                            <button class="d-flex align-items-center justify-content-center col btn cbutton text-bg-primary w-75 px-2 toggle-button"
-                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-receber-tab">
-                                <img src="./img/receber.png" alt="Contas a receber" width="40px">
-                                <span class="ps-1">Contas a receber</span>
+                            <button class="d-flex align-items-center justify-content-center col btn btn-primary cbutton text-bg-primary w-75 px-2 toggle-button"
+                                    data-bs-dismiss="modal" aria-label="Close" data-toggle="fin-despesas-tab"
+                                    id="fin_despesas_toggle">
+                                <img src="./img/pagar.png" alt="Despesas" width="40px">
+                                <span class="ps-1">Despesas</span>
                             </button>
                         </div>
                     </div>
@@ -135,71 +123,53 @@
         </div>
 
         <!-- container do lado direito da tela -->
-        <div class="container-fluid border h-100">
+        <div class="container-fluid h-100">
             <!-- header (tabs) -->
             <ul class="nav nav-tabs header" id="tabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="tab-inicio" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                    <button class="nav-link tab active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-cont"
+                            type="button" role="tab" aria-controls="#home-cont" aria-selected="true">Home</button>
                 </li>
 
-                <!-- tabs do menu cadastros -->
+                <!-- tab do menu cadastros -->
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="cad-pessoas-tab" data-bs-toggle="tab"
+                    <button class="nav-link tab tab-button" id="cad-pessoas-tab" data-bs-toggle="tab"
                             data-bs-target="#cad-pessoas-cont" type="button" role="tab"
-                            aria-controls="#cad-pessoas-cont" aria-selected="false" hidden>
+                            aria-controls="#cad-pessoas-cont" aria-selected="false">
                         <span>
                             Cad. Pessoas
                         </span>
-                        <span class="ms-3 tab-closer">⨯</span>
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="cad-veiculos-tab" data-bs-toggle="tab"
-                            data-bs-target="#cad-veiculos-cont" type="button" role="tab"
-                            aria-controls="#cad-veiculos-cont" aria-selected="false" hidden>
-                        <span>
-                            Cad. Veículos
-                        </span>
-                        <span class="ms-3 tab-closer">⨯</span>
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="cad-enderecos-tab" data-bs-toggle="tab"
-                            data-bs-target="#cad-enderecos-cont" type="button" role="tab"
-                            aria-controls="#cad-enderecos-cont" aria-selected="false" hidden>
-                        <span>
-                            Cad. Endereços
-                        </span>
-                        <span class="ms-3 tab-closer">⨯</span>
+                        <span class="ms-3 tab-closer tab-pessoas-closer">⨯</span>
                     </button>
                 </li>
 
                 <!-- tabs do menu financeiro -->
+                <!-- receita -->
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="fin-pagar-tab" data-bs-toggle="tab"
-                            data-bs-target="#fin-pagar-cont" type="button" role="tab" aria-controls="#fin-pagar-cont"
-                            aria-selected="false" hidden>
+                    <button class="nav-link tab tab-button" id="fin-contas-tab" data-bs-toggle="tab"
+                            data-bs-target="#fin-contas-cont" type="button" role="tab" aria-controls="#fin-contas-cont"
+                            aria-selected="false">
                         <span>
-                            Contas a pagar
+                            Receitas
                         </span>
-                        <span class="ms-3 tab-closer">⨯</span>
+                        <span class="ms-3 tab-closer tab-parcelas-closer">⨯</span>
                     </button>
                 </li>
+                <!-- despesas -->
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="fin-receber-tab" data-bs-toggle="tab"
-                            data-bs-target="#fin-receber-cont" type="button" role="tab"
-                            aria-controls="#fin-receber-cont" aria-selected="false" hidden>
+                    <button class="nav-link tab tab-button" id="fin_despesas_tab" data-bs-toggle="tab"
+                            data-bs-target="#fin-despesas-cont" type="button" role="tab"
+                            aria-controls="#fin-despesas-cont" aria-selected="false">
                         <span>
-                            Contas a receber
+                            Despesas
                         </span>
-                        <span class="ms-3 tab-closer">⨯</span>
+                        <span class="ms-3 tab-closer tab-despesas-closer">⨯</span>
                     </button>
                 </li>
 
                 <!-- tab do menu relatórios -->
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link tab" id="relatorios-tab" data-bs-toggle="tab"
+                    <button class="nav-link tab tab-button" id="relatorios-tab" data-bs-toggle="tab"
                             data-bs-target="#relatorios-cont" type="button" role="tab" aria-controls="#relatorios-cont"
                             aria-selected="false" hidden>
                         <span>
@@ -212,22 +182,932 @@
             </ul>
 
             <!-- conteúdo escondido das tabs -->
-            <div class="tab-pane fade" id="cad-pessoas-cont" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <table id="cad-pessoas_table">
-                    <tr id="cad-pessoas-header">
-                        <th></th>                        
-                    </tr>                    
-                    <tr>                        
-                        <td></td>                        
-                    </tr>
-                </table>
+            <!-- conteúdo home -->
+            <div class="tab-pane fade bg-light show" id="home-cont" role="tabpanel" aria-labelledby="home-tab"
+                 tabindex="0">
+                <div class="container-fluid h-100 d-flex justify-content-center bg-secondary-subtle home-container">
+                    <div class="d-flex flex-column justify-content-end h-50 w-50">
+                        <div class="d-flex flex-column align-items-center">
+                            <img id="search-logo" src="./img/logo_2.png" alt="Search logo" width="250" class="mb-4">
+                            <input type="text" class="form-control w-75 search">
+                            <button class="btn btn-primary w-25 mt-3" id="search">Pesquisar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- conteúdo cad. pessoas -->
+            <div class="tab-pane fade bg-light" id="cad-pessoas-cont" role="tabpanel" aria-labelledby="cad-pessoas-tab"
+                 tabindex="0" hidden>
+                <div class="container-fluid h-100 overflow-auto tab-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr id="cad_pessoas_header">
+                                <!-- cabeçalhos injetados por JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="cad_pessoas_body">
+                            <!-- linhas e dados injetados por JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between pb-3">
+                    <div>
+                        <button type="button" class="btn cbutton ms-4" data-bs-toggle="modal"
+                                data-bs-target="#cad_pessoas_filtros">
+                            <img src="./img/filtros.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Filtros</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#cad_pessoas_incluir">
+                            <img src="./img/incluir.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Incluir</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#cad_pessoas_alterar" id="bt-alterar-pessoa" disabled>
+                            <img src="./img/alterar.png" alt="Alterar" width="25px">
+                            <span class="text-primary ps-0">Alterar</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton me-3" data-bs-toggle="modal"
+                                data-bs-target="#cad_pessoas_excluir" id="bt-excluir-pessoa" disabled>
+                            <img src="./img/excluir.png" alt="Excluir" width="25px">
+                            <span class="text-primary ps-0">Excluir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- conteúdo despesas -->
+            <div class="tab-pane fade bg-light" id="fin-despesas-cont" role="tabpanel"
+                 aria-labelledby="fin-despesas-tab" tabindex="0" hidden>
+                <div class="container-fluid h-100 overflow-auto tab-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr id="fin_despesas_header">
+                                <!-- cabeçalhos injetados por JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="fin_despesas_body">
+                            <!-- linhas e dados injetados por JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between pb-3">
+                    <div>
+                        <button type="button" class="btn cbutton ms-5" data-bs-toggle="modal"
+                                data-bs-target="#fin_despesas_filtros">
+                            <img src="./img/filtros.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Filtros</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#fin_despesas_incluir">
+                            <img src="./img/incluir.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Incluir</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#fin_despesas_alterar" id="bt-alterar-despesa" disabled>
+                            <img src="./img/alterar.png" alt="Alterar" width="25px">
+                            <span class="text-primary ps-0">Alterar</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton me-3" data-bs-toggle="modal"
+                                data-bs-target="#cad_despesas_excluir" id="bt-excluir-despesa" disabled>
+                            <img src="./img/excluir.png" alt="Excluir" width="25px">
+                            <span class="text-primary ps-0">Excluir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- conteúdo receita -->
+            <div class="tab-pane fade bg-light" id="fin-contas-cont" role="tabpanel" aria-labelledby="fin-contas-tab"
+                 tabindex="0" hidden>
+                <div class="container-fluid h-100 overflow-auto tab-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr id="fin_receber_header">
+                                <!-- cabeçalhos injetados por JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="fin_receber_body">
+                            <!-- linhas e dados injetados por JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between pb-3">
+                    <div>
+                        <button type="button" class="btn cbutton ms-5" data-bs-toggle="modal"
+                                data-bs-target="#fin_receitas_filtros">
+                            <img src="./img/filtros.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Filtros</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#fin_contas_incluir">
+                            <img src="./img/incluir.png" alt="Incluir" width="25px">
+                            <span class="text-primary ps-0">Incluir</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton" data-bs-toggle="modal"
+                                data-bs-target="#fin_contas_alterar" id="bt-alterar-parcela" disabled>
+                            <img src="./img/alterar.png" alt="Alterar" width="25px">
+                            <span class="text-primary ps-0">Alterar</span>
+                        </button>
+
+                        <button type="button" class="btn cbutton me-3" data-bs-toggle="modal"
+                                data-bs-target="#cad_parcelas_excluir" id="bt-excluir-parcela" disabled>
+                            <img src="./img/excluir.png" alt="Excluir" width="25px">
+                            <span class="text-primary ps-0">Excluir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- conteúdo relatórios -->
+            <div class="tab-pane fade bg-light " id="relatorios-cont" role="tabpanel" aria-labelledby="relatorios-tab"
+                 tabindex="0" hidden>
+                <div class="container-fluid d-flex justify-content-center h-75 mt-2 bg-secondary-subtle rel-container">
+                    <div class="row h-25">
+                        <button type="button"
+                                class="btn txt-custom d-flex flex-column align-items-center justify-content-center border-white bg-white rbutton h-50 me-3"
+                                data-bs-toggle="modal" data-bs-target="#total-quitado-cont" id="bt-total-quitado">
+                            <img src="./img/quitadas.png" alt="Quitadas" width="35px" class="mb-1">
+                            <span class="txt-custom">Valor total quitado</span>
+                        </button>
+                        <button type="button"
+                                class="btn txt-custom d-flex flex-column align-items-center justify-content-center border border-white bg-white rbutton h-50"
+                                data-bs-toggle="modal" data-bs-target="#total-pendente-cont" id="bt-total-pendente">
+                            <img src="./img/pendentes.png" alt="Pendentes" width="35px" class="mb-1">
+                            <span class="txt-custom">Valor total pendente</span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </div>
+
+        <!-- modais dos botões dos módulos -->
+
+        <!-- modais dos botões do cad. pessoas -->
+        <!-- cad. pessoas > botão filtros -->
+        <div class="modal fade" id="cad_pessoas_filtros" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Filtros</h1>
+                        <button type="button" class="btn-close" id="cad-pessoas-filtros-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="filtros_pessoa_nome" class="form-label">Nome</label>
+                                    <input type="text" name="filtros_pessoa_nome" id="filtros_pessoa_nome"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="filtros_pessoa_cpf_cnpj" class="form-label">CPF / CNPJ</label>
+                                    <input type="text" name="filtros_pessoa_cpf_cnpj" id="filtros_pessoa_cpf_cnpj"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="filtros_pessoa_rg_ie" class="form-label">RG / IE</label>
+                                    <input type="text" name="filtros_pessoa_rg_ie" id="filtros_pessoa_rg_ie"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="filtros_pessoa_email" class="form-label">Email</label>
+                                    <input type="email" name="filtros_pessoa_email" id="filtros_pessoa_email"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="incluir_pessoa_telefone" class="form-label">Telefone</label>
+                                    <input type="text" name="filtros_pessoa_telefone" id="filtros_pessoa_telefone"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3 me-2">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-2"
+                                id="filtros-pessoas-confirma">Aplicar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- cad. pessoas > botão incluir -->
+        <div class="modal fade modal-form" id="cad_pessoas_incluir" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Novo cadastro - Pessoa</h1>
+                        <button type="button" class="btn-close" id="new-pessoa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3 w-25">
+                                    <label for="incluir_pessoa_nome" class="form-label">Nome*</label>
+                                    <input type="text" name="incluir_pessoa_nome" id="incluir_pessoa_nome"
+                                           class="form-control" required>
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_pessoa_cpf_cnpj" class="form-label">CPF / CNPJ*</label>
+                                    <input type="text" name="incluir_pessoa_cpf_cnpj" id="incluir_pessoa_cpf_cnpj"
+                                           class="form-control" required>
+                                </div>
+                                <div class="mb-3 w-25 d-flex align-items-end">
+                                    <button type="button" class="btn btn-primary" id="consulta_cnpj" data-bs-toggle="modal" data-bs-target="#retorno_consulta_cnpj">Verificar
+                                        CPF / CNPJ</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_pessoa_rg_ie" class="form-label">RG / IE</label>
+                                    <input type="text" name="incluir_pessoa_rg_ie" id="incluir_pessoa_rg_ie"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_pessoa_email" class="form-label">Email</label>
+                                    <input type="email" name="incluir_pessoa_email" id="incluir_pessoa_email"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_pessoa_telefone1" class="form-label">Telefone*</label>
+                                    <input type="text" name="incluir_pessoa_telefone1" id="incluir_pessoa_telefone1"
+                                           class="form-control" required>
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_pessoa_telefone2" class="form-label">Telefone secundário</label>
+                                    <input type="text" name="incluir_pessoa_telefone2" id="incluir_pessoa_telefone2"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="new-pessoa-incluir">Incluir</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- cad. pessoas > botão alterar -->
+        <div class="modal fade modal-form" id="cad_pessoas_alterar" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Alteração de cadastro</h1>
+                        <button type="button" class="btn-close" id="alt-pessoa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="mb-3 d-flex flex-row">
+                                <div class="mb-3">
+                                    <span class="me-5">Cód: <span class="alt-pessoa-codigo text-danger"></span></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_nome" class="form-label">Nome*</label>
+                                    <input type="text" name="alterar_pessoa_nome" id="alterar_pessoa_nome"
+                                           class="form-control" required>
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_cpf_cnpj" class="form-label">CPF / CNPJ*</label>
+                                    <input type="text" name="alterar_pessoa_cpf_cnpj" id="alterar_pessoa_cpf_cnpj"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_rg_ie" class="form-label">RG / IE</label>
+                                    <input type="text" name="alterar_pessoa_rg_ie" id="alterar_pessoa_rg_ie"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_email" class="form-label">Email</label>
+                                    <input type="email" name="alterar_pessoa_email" id="alterar_pessoa_email"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_telefone1" class="form-label">Telefone*</label>
+                                    <input type="text" name="alterar_pessoa_telefone1" id="alterar_pessoa_telefone1"
+                                           class="form-control" required>
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_pessoa_telefone2" class="form-label">Telefone secundário</label>
+                                    <input type="text" name="alterar_pessoa_telefone2" id="alterar_pessoa_telefone2"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="alterar-pessoa">Alterar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- cad. pessoas > botão excluir -->
+        <div class="modal fade" id="cad_pessoas_excluir" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Exclusão de cadastro</h1>
+                        <button type="button" class="btn-close" id="del-pessoa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Após excluir o cadastro, não será possível restaurá-lo. Deseja confirmar a exclusão?</p>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-4"
+                                id="confirma-exclusao">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- cad. pessoas > retorno da consulta de cnpj -->
+        <div class="modal fade" id="retorno_consulta_cnpj" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header text-white" id="consulta_header">
+                        <h1 class="modal-title fs-5">Consulta CPF / CNPJ</h1>
+                    </div>
+                    <div class="modal-body">
+                        <p id="dados_consulta_cnpj"></p>                        
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3 me-2">
+                        <button type="button" class="btn btn-success w-auto px-4 me-3" id="trazer_dados_consulta" hidden>Trazer dados</button>
+                        <button type="submit" class="btn w-auto px-4 me-3" id="consulta_voltar"
+                                data-bs-toggle="modal" data-bs-target="#cad_pessoas_incluir">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modais dos botões do receitas -->
+        <!-- receitas > botão filtros -->
+        <div class="modal fade" id="fin_receitas_filtros" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Filtros</h1>
+                        <button type="button" class="btn-close" id="fin-receitas-filtros-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_receitas_nome" class="form-label">Nome da pessoa</label>
+                                    <input type="text" name="filtros_receitas_nome" id="filtros_receitas_nome"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_receitas_forma_pgto" class="form-label">Forma de
+                                        pagamento</label>
+                                    <select class="form-select" name="filtros_receitas_forma_pgto"
+                                            id="filtros_receitas_forma_pgto">
+                                        <option value="">-- Todas --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_receitas_valor_minimo" class="form-label">Valor mínimo</label>
+                                    <input type="number" placeholder="0.00" value="0"
+                                           name="filtros_receitas_valor_minimo" id="filtros_receitas_valor_minimo"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_receitas_valor_maximo" class="form-label">Valor máximo</label>
+                                    <input type="number" placeholder="99999999.99" value="99999999.99"
+                                           name="filtros_receitas_valor_maximo" id="filtros_receitas_valor_maximo"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Tipo de parcela:</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_receitas_quitada"
+                                           id="filtros_receitas_quitada_sim" value="true">
+                                    <label class="form-check-label" for="filtros_receitas_quitada_sim"
+                                           class="form-label">Quitada</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_receitas_quitada"
+                                           id="filtros_receitas_quitada_nao" value="false">
+                                    <label class="form-check-label" for="filtros_receitas_quitada_nao"
+                                           class="form-label">Não
+                                        quitada</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_receitas_quitada"
+                                           id="filtros_receitas_quitada_ambos" value="false" checked>
+                                    <label class="form-check-label" for="filtros_receitas_quitada_ambos"
+                                           class="form-label">Ambos</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3 me-0 me-2">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-2"
+                                id="filtros-receitas-confirma">Aplicar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- receitas > botão incluir -->
+        <div class="modal fade modal-form" id="fin_contas_incluir" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Inclusão de parcela a receber</h1>
+                        <button type="button" class="btn-close" id="new-parcela-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3 w-25">
+                                    <label for="incluir_conta_cliente" class="form-label">Cód. cliente</label>
+                                    <input type="number" name="incluir_conta_cliente" id="incluir_conta_cliente"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-25">
+                                    <label for="incluir_conta_valor" class="form-label">Valor</label>
+                                    <input type="number" min="1" step="any" name="incluir_conta_valor"
+                                           id="incluir_conta_valor" class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_conta_forma_pgto" class="form-label">Forma de pagamento</label>
+                                    <select class="form-select" name="incluir_conta_forma_pgto"
+                                            id="incluir_conta_forma_pgto">
+                                        <option value="" hidden>-- Selecione uma opção --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Deseja lançar a parcela como quitada?</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="incluir_conta_quitada"
+                                           id="incluir_conta_quitada_sim" value="true">
+                                    <label class="form-check-label" for="incluir_conta_quitada_sim"
+                                           class="form-label">Sim</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="incluir_conta_quitada"
+                                           id="incluir_conta_quitada_nao" value="false" checked>
+                                    <label class="form-check-label" for="incluir_conta_quitada_nao"
+                                           class="form-label">Não</label>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="new-parcela-incluir">Incluir</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- receitas > botao alterar -->
+        <div class="modal fade modal-form" id="fin_contas_alterar" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Alteração de parcela</h1>
+                        <button type="button" class="btn-close" id="alt-parcela-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="mb-3 d-flex flex-row">
+                                <div class="mb-3">
+                                    <span class="me-5">Cód. parcela: <span
+                                              class="alt-parcela-codigo text-danger"></span></span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="me-5">Cliente: <span
+                                              class="alt-parcela-nome-cliente text-danger"></span></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-25">
+                                    <label for="alterar_conta_cliente" class="form-label">Cód. cliente</label>
+                                    <input type="number" name="alterar_conta_cliente" id="alterar_conta_cliente"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-25">
+                                    <label for="alterar_conta_valor" class="form-label">Valor</label>
+                                    <input type="number" min="1" step="any" name="alterar_conta_valor"
+                                           id="alterar_conta_valor" class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_conta_forma_pgto" class="form-label">Forma de pagamento</label>
+                                    <select class="form-select" name="alterar_conta_forma_pgto"
+                                            id="alterar_conta_forma_pgto">
+                                        <option value="" hidden>-- Selecione uma opção --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Deseja alterar a parcela para quitada?</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="alterar_conta_quitada"
+                                           id="alterar_conta_quitada_sim" value="true">
+                                    <label class="form-check-label" for="alterar_conta_quitada_sim"
+                                           class="form-label">Sim</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="alterar_conta_quitada"
+                                           id="alterar_conta_quitada_nao" value="false" checked>
+                                    <label class="form-check-label" for="alterar_conta_quitada_nao"
+                                           class="form-label">Não</label>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="alterar-parcela">Alterar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- receitas > botão excluir -->
+        <div class="modal fade" id="cad_parcelas_excluir" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Exclusão de parcela</h1>
+                        <button type="button" class="btn-close" id="del-parcela-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Após excluir a parcela, não será possível restaurá-la. Deseja confirmar a exclusão?</p>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-4"
+                                id="confirma-exclusao-parcela">Excluir</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- modais dos botões do despesas -->
+        <!-- despesas > botão filtros -->
+        <div class="modal fade" id="fin_despesas_filtros" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Filtros</h1>
+                        <button type="button" class="btn-close" id="fin-despesas-filtros-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_despesas_nome" class="form-label">Nome da pessoa</label>
+                                    <input type="text" name="filtros_despesas_nome" id="filtros_despesas_nome"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_despesas_forma_pgto" class="form-label">Forma de
+                                        pagamento</label>
+                                    <select class="form-select" name="filtros_despesas_forma_pgto"
+                                            id="filtros_despesas_forma_pgto">
+                                        <option value="">-- Todas --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_despesas_valor_minimo" class="form-label">Valor mínimo</label>
+                                    <input type="number" placeholder="0.00" value="0"
+                                           name="filtros_despesas_valor_minimo" id="filtros_despesas_valor_minimo"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="filtros_despesas_valor_maximo" class="form-label">Valor máximo</label>
+                                    <input type="number" placeholder="99999999.99" value="99999999.99"
+                                           name="filtros_despesas_valor_maximo" id="filtros_despesas_valor_maximo"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Tipo de parcela:</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_despesas_quitada"
+                                           id="filtros_despesas_quitada_sim" value="true">
+                                    <label class="form-check-label" for="filtros_despesas_quitada_sim"
+                                           class="form-label">Quitada</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_despesas_quitada"
+                                           id="filtros_despesas_quitada_nao" value="false">
+                                    <label class="form-check-label" for="filtros_despesas_quitada_nao"
+                                           class="form-label">Não
+                                        quitada</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="filtros_despesas_quitada"
+                                           id="filtros_despesas_quitada_ambos" value="false" checked>
+                                    <label class="form-check-label" for="filtros_despesas_quitada_ambos"
+                                           class="form-label">Ambos</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3 me-0 me-2">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-2"
+                                id="filtros-despesas-confirma">Aplicar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- despesas > botão incluir -->
+        <div class="modal fade modal-form" id="fin_despesas_incluir" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Inclusão de parcela a pagar</h1>
+                        <button type="button" class="btn-close" id="new-despesa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="row">
+                                <div class="mb-3 w-25">
+                                    <label for="incluir_despesa_cliente" class="form-label">Cód. cliente</label>
+                                    <input type="number" name="incluir_despesa_cliente" id="incluir_despesa_cliente"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-25">
+                                    <label for="incluir_despesa_valor" class="form-label">Valor</label>
+                                    <input type="number" min="1" step="any" name="incluir_despesa_valor"
+                                           id="incluir_despesa_valor" class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="incluir_despesa_forma_pgto" class="form-label">Forma de
+                                        pagamento</label>
+                                    <select class="form-select" name="incluir_despesa_forma_pgto"
+                                            id="incluir_despesa_forma_pgto">
+                                        <option value="" hidden>-- Selecione uma opção --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Deseja lançar a parcela como quitada?</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="incluir_despesa_quitada"
+                                           id="incluir_despesa_quitada_sim" value="true">
+                                    <label class="form-check-label" for="incluir_despesa_quitada_sim"
+                                           class="form-label">Sim</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="incluir_despesa_quitada"
+                                           id="incluir_despesa_quitada_nao" value="false" checked>
+                                    <label class="form-check-label" for="incluir_despesa_quitada_nao"
+                                           class="form-label">Não</label>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="new-despesa-incluir">Incluir</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- despesas > botao alterar -->
+        <div class="modal fade modal-form" id="fin_despesas_alterar" tabindex="-1" aria-hidden="true"
+             data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Alteração de parcela a pagar</h1>
+                        <button type="button" class="btn-close" id="alt-despesa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="." method=".">
+                            <div class="mb-3 d-flex flex-row">
+                                <div class="mb-3">
+                                    <span class="me-5">Cód. parcela: <span
+                                              class="alt-despesa-codigo text-danger"></span></span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="me-5">Cliente: <span
+                                              class="alt-despesa-nome-cliente text-danger"></span></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 w-25">
+                                    <label for="alterar_despesa_cliente" class="form-label">Cód. cliente</label>
+                                    <input type="number" name="alterar_despesa_cliente" id="alterar_despesa_cliente"
+                                           class="form-control">
+                                </div>
+                                <div class="mb-3 w-25">
+                                    <label for="alterar_despesa_valor" class="form-label">Valor</label>
+                                    <input type="number" min="1" step="any" name="alterar_despesa_valor"
+                                           id="alterar_despesa_valor" class="form-control">
+                                </div>
+                                <div class="mb-3 w-50">
+                                    <label for="alterar_despesa_forma_pgto" class="form-label">Forma de
+                                        pagamento</label>
+                                    <select class="form-select" name="alterar_despesa_forma_pgto"
+                                            id="alterar_despesa_forma_pgto">
+                                        <option value="" hidden>-- Selecione uma opção --</option>
+                                        <option value="dinheiro">Dinheiro</option>
+                                        <option value="debito">Cartão débito</option>
+                                        <option value="credito">Cartão crédito</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="cheque">Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label">Deseja alterar a parcela para quitada?</label>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="form-check ms-3 mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="alterar_despesa_quitada"
+                                           id="alterar_despesa_quitada_sim" value="true">
+                                    <label class="form-check-label" for="alterar_despesa_quitada_sim"
+                                           class="form-label">Sim</label>
+                                </div>
+                                <div class="form-check mb-3 w-auto">
+                                    <input class="form-check-input" type="radio" name="alterar_despesa_quitada"
+                                           id="alterar_despesa_quitada_nao" value="false" checked>
+                                    <label class="form-check-label" for="alterar_despesa_quitada_nao"
+                                           class="form-label">Não</label>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="alterar-despesa">Alterar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- despesas > botão excluir -->
+        <div class="modal fade" id="cad_despesas_excluir" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Exclusão de parcela a pagar</h1>
+                        <button type="button" class="btn-close" id="del-despesa-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Após excluir a parcela, não será possível restaurá-la. Deseja confirmar a exclusão?</p>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mb-3">
+                        <button type="submit" class="btn btn-primary w-auto px-4 me-4"
+                                id="confirma-exclusao-despesa">Excluir</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- modais do módulo relatórios -->
+        <!-- relatórios > total quitado -->
+        <div class="modal fade" id="total-quitado-cont" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Valor total de parcelas quitadas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>O valor total quitado é de R$ <span id="total-quitado-res"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- relatórios > total pendente -->
+        <div class="modal fade" id="total-pendente-cont" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Valor total de parcelas pendentes</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>O valor total pendente é de R$ <span id="total-pendente-res"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
-    <script src="./js/app.js" type="module"></script>
+    <script src="./js/cadastros.js" type="module"></script>
+    <script src="./js/receitas.js" type="module"></script>
+    <script src="./js/despesas.js" type="module"></script>
+    <script src="./js/relatorios.js" type="module"></script>
     <script src="./js/script.js" type="module"></script>
 </body>
 
