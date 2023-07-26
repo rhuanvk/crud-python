@@ -21,6 +21,13 @@ newCheckBox.classList.add('mt-3');
 const alterarPessoaButton = document.querySelector('#bt-alterar-pessoa');
 const excluirPessoaButton = document.querySelector('#bt-excluir-pessoa');
 
+// botões e campos do validador CNPJ
+const btConsultaCpfCnpj = document.getElementById('consulta_cnpj');
+const btTrazerDadosConsulta = document.getElementById('trazer_dados_consulta');
+const btResultadoConsultaVoltar = document.getElementById('consulta_voltar');
+const resultadoConsultaHeader = document.getElementById('consulta_header');
+const dadosConsultaCnpj = document.getElementById('dados_consulta_cnpj');
+
 
 // campos do formulário de inclusão de uma nova pessoa
 let newPessoaNome = document.getElementById('incluir_pessoa_nome');
@@ -153,6 +160,16 @@ function validarCNPJ(cnpj) {
     return true;
 }
 
+function retornaCNPJinvalido() {
+    btResultadoConsultaVoltar.classList.remove('btn-success');
+    resultadoConsultaHeader.classList.remove('bg-success');
+    btResultadoConsultaVoltar.classList.add('btn-danger');
+    resultadoConsultaHeader.classList.add('bg-danger');
+    dadosConsultaCnpj.innerHTML = '<b>[ERRO]</b> O CPF ou CNPJ informado é inválido.';
+    btTrazerDadosConsulta.setAttribute('hidden', '');
+    btConsultaCpfCnpj.click();
+}
+
 // traz do servidor os dados de cadastros
 async function getCadPessoas() {
     try {
@@ -259,65 +276,44 @@ async function getCadPessoas() {
 
 // envia ao servidor uma solicitação de consulta de CNPJ
 async function consultaCNPJ() {
-
-    const btConsultaCpfCnpj = document.getElementById('consulta_cnpj');
-    const btTrazerDadosConsulta = document.getElementById('trazer_dados_consulta');
-    const btResultadoConsultaVoltar = document.getElementById('consulta_voltar');
-    const resultadoConsultaHeader = document.getElementById('consulta_header');
-    const dadosConsultaCnpj = document.getElementById('dados_consulta_cnpj');
-
     try {
-        if (validarCPF(newPessoaCpfCnpj.value) == true) {
-            btResultadoConsultaVoltar.classList.remove('btn-danger');
-            resultadoConsultaHeader.classList.remove('bg-danger');
-            btResultadoConsultaVoltar.classList.add('btn-secondary');
-            resultadoConsultaHeader.classList.add('bg-success');
-
-            dadosConsultaCnpj.innerText = 'O CPF informado foi validado com sucesso.';
-        }
-        else if (validarCNPJ(newPessoaCpfCnpj.value) == true) {
- 
+        if (validarCNPJ(newPessoaCpfCnpj.value)) {
             btResultadoConsultaVoltar.classList.remove('btn-danger');
             resultadoConsultaHeader.classList.remove('bg-danger');
             btResultadoConsultaVoltar.classList.add('btn-secondary');
             resultadoConsultaHeader.classList.add('bg-success');
             btTrazerDadosConsulta.removeAttribute('hidden');
-            
             dadosConsultaCnpj.innerText = 'O CNPJ informado foi validado com sucesso. Deseja preencher os campos com os dados da empresa?';
 
             let params = {
                 cnpj: newPessoaCpfCnpj.value
             };
-            
+
             let resultadoConsulta = await axios({
                 method: 'GET',
                 url: URL_BASE + '/consultaCNPJ',
                 params: params
             });
-            
+
             let resultadoConsultaText = JSON.stringify(resultadoConsulta.data);
-            
+
             btTrazerDadosConsulta.addEventListener('click', () => {
                 if (resultadoConsultaText == '"Too many requests, please try again later."') {
                     dadosConsultaCnpj.innerHTML = '<b>[ERRO]</b> Você atingiu o número máximo de consultas. Tente novamente em um minuto.';
+                    btTrazerDadosConsulta.setAttribute('hidden', '');
+                    ok = false;
                 }
                 else {
                     newPessoaNome.value = toTitleCase(resultadoConsulta.data.nome);
-                    newPessoaCpfCnpj.value = resultadoConsulta.data.cnpj;
+                    newPessoaCpfCnpj.value = formatToNumberOnly(resultadoConsulta.data.cnpj);
                     newPessoaEmail.value = resultadoConsulta.data.email;
                     newPessoaTelefone1.value = formatToNumberOnly(resultadoConsulta.data.telefone);
                     btResultadoConsultaVoltar.click();
+                    btTrazerDadosConsulta.setAttribute('hidden', '');
                 }
-            })
+            });
         }
-        else {
-            btResultadoConsultaVoltar.classList.remove('btn-success');
-            resultadoConsultaHeader.classList.remove('bg-success');
-            btResultadoConsultaVoltar.classList.add('btn-danger');
-            resultadoConsultaHeader.classList.add('bg-danger');
-            btConsultaCpfCnpj.click();
-            dadosConsultaCnpj.innerHTML = '<b>[ERRO]</b> O valor informado não corresponde a nenhum CPF ou CNPJ válido.';
-        }
+        else retornaCNPJinvalido();
     }
 
     catch (error) {
@@ -455,12 +451,15 @@ btDelPessoa.addEventListener('click', (e) => {
 });
 
 const newPessoaClose = document.getElementById('new-pessoa-close');
-const newPessoaIncluir = document.getElementById('new-pessoa-incluir');
+const newPessoaForm = document.getElementById('new-pessoa-form');
 const btConsultaCnpj = document.getElementById('consulta_cnpj');
 
-newPessoaIncluir.addEventListener('click', (e) => {
+newPessoaForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    newCadPessoa();
+    if (validarCPF(newPessoaCpfCnpj.value) || validarCNPJ(newPessoaCpfCnpj.value)) {
+        newCadPessoa();
+    }
+    else retornaCNPJinvalido();
 });
 
 btConsultaCnpj.addEventListener('click', () => {

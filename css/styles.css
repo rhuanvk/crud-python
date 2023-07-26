@@ -10,6 +10,8 @@ html, body {
     max-width: 75px;
 }
 
+
+
 .border-primary {
     border: 3px solid #324C7B !important;
     border-radius: 6px;
@@ -89,4 +91,8 @@ th {
 
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+.login-toggle {
+    display: none !important;
 }

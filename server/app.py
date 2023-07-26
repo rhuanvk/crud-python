@@ -1,17 +1,22 @@
+import hashlib
 import json
+import jwt
+import os
 import psycopg2 as pypg
+import psycopg2.extras
 import requests
 
 import flask
 from flask import Flask
 from flask_cors import CORS
-
+from datetime import datetime, timedelta
 from decimal import Decimal
 
+AUTHSECRET = 'asdasdasdsa'
+EXPIRESSECONDS = 86400
 
 app = Flask(__name__)
 cors = CORS(app)
-
 
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -39,6 +44,87 @@ class Connection:
 
 db_connect = Connection()
 
+@app.route('/client', methods=['POST'])
+def client():
+    request = flask.request.get_json(force=True)
+    user_id = request['user_email']
+    user_token = request['user_password']
+    hash_object = hashlib.sha1(bytes(user_token, 'utf-8'))
+    hashed_client_token = hash_object.hexdigest()
+    create_response = create_new_client(user_id, hashed_client_token)
+    if create_response:
+        return {'success': create_response}
+    else:
+        return {'success': False}
+    
+
+def create_new_client(user_id, user_token):
+    cursor = db_connect.connect().cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute('rollback')
+    cursor.execute("""
+                    INSERT INTO
+                        usuarios(
+                           user_id,
+                           user_token 
+                        )
+                        VALUES(
+                            %s,
+                            %s
+                )""", (user_id, user_token))
+    cursor.connection.commit()
+    cursor.close()
+    return True
+
+@app.route('/auth', methods=['POST'])
+def auth():
+    request = flask.request.get_json(force=True)
+    user_id = request['user_email']
+    user_token = request['user_password']
+    hash_object = hashlib.sha1(bytes(user_token, 'utf-8'))
+    hashed_client_token = hash_object.hexdigest()
+    authentication = authenticate(user_id, hashed_client_token)
+    print(authentication)
+    if authentication:
+        return json.dumps(authentication)
+    else:
+        return {'success': False}
+
+def authenticate(user_id, user_token):
+    cursor = db_connect.connect().cursor()
+    cursor.execute('rollback')
+    cursor.execute("""
+                    SELECT
+                        codigo,
+                        user_id,
+                        user_token
+                    FROM usuarios
+                    WHERE
+                        user_id = %s
+                    AND
+                        user_token = %s
+                """, (user_id, user_token))
+    rows = cursor.fetchall()
+    if cursor.rowcount == 1:
+        for row in rows:
+            payload = auth_pay_load(row[0], row[1])
+        encoded_jwt = jwt.encode(payload.__dict__, AUTHSECRET, algorithm= 'HS256')
+        response = auth_response(encoded_jwt, EXPIRESSECONDS)
+        return response.__dict__
+    else:
+        return False
+    
+class auth_pay_load(dict):
+    def __init__(self, id, client_id):        
+        self.id = id
+        self.client_id = client_id
+        
+        self.exp = datetime.utcnow() + timedelta(seconds=EXPIRESSECONDS)
+        
+class auth_response(dict):
+    def __init__(self, token, expiresin):
+        self.token = token
+        self.expiresin = expiresin
+
 # retorno de reposta para a consulta de CNPJ
 @app.route('/consultaCNPJ', methods=['GET'])
 def get_consulta_cnpj():
@@ -47,6 +133,7 @@ def get_consulta_cnpj():
     
     return consulta_cnpj.text
     
+
 
 # retorno de resposta para o módulo de cadastro de pessoas
 @app.route('/newCadPessoa', methods=['POST'])
@@ -62,7 +149,8 @@ def new_cad_pessoa():
                             rg_ie, 
                             email, 
                             telefone_1, 
-                            telefone_2) 
+                            telefone_2
+                            ) 
                         VALUES(
                             %(nome)s, 
                             %(cpf_cnpj)s, 

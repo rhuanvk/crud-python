@@ -18,13 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
             integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
             crossorigin="anonymous"></script>
+
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
-    <!-- container principal -->
-    <div class="container-fluid h-100 bg-secondary-subtle d-flex align-items-end p-0">
+    <!-- container logado -->
+    <div class="container-fluid h-100 bg-secondary-subtle d-flex align-items-end p-0 login-toggle" id="container-principal">
         <!-- container da sidebar -->
         <div class="col-2 col-x col-sm-3 col-md-3 col-lg-2 bg-primary h-100">
             <a href="#" class="navbar-brand d-flex justify-content-center pt-4">
@@ -135,7 +136,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link tab tab-button" id="cad-pessoas-tab" data-bs-toggle="tab"
                             data-bs-target="#cad-pessoas-cont" type="button" role="tab"
-                            aria-controls="#cad-pessoas-cont" aria-selected="false">
+                            aria-controls="#cad-pessoas-cont" aria-selected="false" hidden>
                         <span>
                             Cad. Pessoas
                         </span>
@@ -148,7 +149,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link tab tab-button" id="fin-contas-tab" data-bs-toggle="tab"
                             data-bs-target="#fin-contas-cont" type="button" role="tab" aria-controls="#fin-contas-cont"
-                            aria-selected="false">
+                            aria-selected="false" hidden>
                         <span>
                             Receitas
                         </span>
@@ -159,7 +160,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link tab tab-button" id="fin_despesas_tab" data-bs-toggle="tab"
                             data-bs-target="#fin-despesas-cont" type="button" role="tab"
-                            aria-controls="#fin-despesas-cont" aria-selected="false">
+                            aria-controls="#fin-despesas-cont" aria-selected="false" hidden>
                         <span>
                             Despesas
                         </span>
@@ -427,21 +428,22 @@
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="." method=".">
+                        <form id="new-pessoa-form" action="." method=".">
                             <div class="row">
-                                <div class="mb-3 w-25">
+                                <div class="mb-3 w-50">
                                     <label for="incluir_pessoa_nome" class="form-label">Nome*</label>
                                     <input type="text" name="incluir_pessoa_nome" id="incluir_pessoa_nome"
                                            class="form-control" required>
                                 </div>
-                                <div class="mb-3 w-50">
+                                <div class="mb-3 w-25">
                                     <label for="incluir_pessoa_cpf_cnpj" class="form-label">CPF / CNPJ*</label>
                                     <input type="text" name="incluir_pessoa_cpf_cnpj" id="incluir_pessoa_cpf_cnpj"
                                            class="form-control" required>
                                 </div>
                                 <div class="mb-3 w-25 d-flex align-items-end">
-                                    <button type="button" class="btn btn-primary" id="consulta_cnpj" data-bs-toggle="modal" data-bs-target="#retorno_consulta_cnpj">Verificar
-                                        CPF / CNPJ</button>
+                                    <button type="button" class="btn btn-primary" id="consulta_cnpj"
+                                            data-bs-toggle="modal" data-bs-target="#retorno_consulta_cnpj">Consultar
+                                        CNPJ</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -567,16 +569,17 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-secondary-subtle">
                     <div class="modal-header text-white" id="consulta_header">
-                        <h1 class="modal-title fs-5">Consulta CPF / CNPJ</h1>
+                        <h1 class="modal-title fs-5">Validador CPF / CNPJ</h1>
                     </div>
                     <div class="modal-body">
-                        <p id="dados_consulta_cnpj"></p>                        
+                        <p id="dados_consulta_cnpj"></p>
                     </div>
 
                     <div class="row d-flex justify-content-end mb-3 me-2">
-                        <button type="button" class="btn btn-success w-auto px-4 me-3" id="trazer_dados_consulta" hidden>Trazer dados</button>
-                        <button type="submit" class="btn w-auto px-4 me-3" id="consulta_voltar"
-                                data-bs-toggle="modal" data-bs-target="#cad_pessoas_incluir">Voltar</button>
+                        <button type="button" class="btn btn-success w-auto px-4 me-3" id="trazer_dados_consulta"
+                                hidden>Trazer dados</button>
+                        <button type="submit" class="btn w-auto px-4 me-3" id="consulta_voltar" data-bs-toggle="modal"
+                                data-bs-target="#cad_pessoas_incluir">Voltar</button>
                     </div>
                 </div>
             </div>
@@ -1103,7 +1106,77 @@
 
     </div>
 
+    <!-- container para login -->
+    <div class="container-fluid h-100 bg-secondary-subtle d-flex flex-column align-items-center justify-content-center p-0" id="container-login">
+        <img src="./img/logo_3.png" alt="Logo Forbos" width="100px" id="logo_3" class="pb-3">
+        <h1 class="fs-3 pb-4">Bem-vindo ao Forbos Web</h1>
+        <div class="container w-25 bg-white p-4 shadow rounded-3">
+            <h1 class="fs-5 pt-1 fw-normal text-center">Faça login para continuar</h1>
+            <h5 class="fs-6 fw-semibold text-danger text-center" id="login-failed"></h5>
+            <form id="login" action="." method="." class="d-flex flex-column px-5 pt-4">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="login_email" class="form-label">Email</label>
+                        <input type="email" name="login_email" id="login_email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="login_password" class="form-label">Senha</label>
+                        <input type="password" name="login_password" id="login_password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 d-flex justify-content-center pt-3">
+                        <button type="submit" class="btn btn-primary w-auto px-5" id="fazer_login">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container d-flex flex-row w-auto justify-content-between p-2">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#criar_conta">Criar conta
+            </button>
+            <button type="button" class="btn">Esqueceu a
+                senha?</button>
+        </div>
 
+        <div class="modal fade modal-form" id="criar_conta" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content bg-secondary-subtle">
+                    <div class="modal-header bg-primary text-white">
+                        <h1 class="modal-title fs-5">Nova conta</h1>
+                        <button type="button" class="btn-close" id="criar-conta-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="criar_conta_form" action="." method=".">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="criar_conta_email" class="form-label">Email*</label>
+                                    <input type="email" name="criar_conta_email" id="criar_conta_email"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="criar_conta_senha" class="form-label">Senha*</label>
+                                    <input type="password" name="criar_conta_senha" id="criar_conta_senha"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-end mt-1">
+                                <button type="submit" class="btn btn-primary w-auto px-4 me-3"
+                                        id="confirma_criar_conta">Criar conta</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/auth.js" type="module"></script>
     <script src="./js/cadastros.js" type="module"></script>
     <script src="./js/receitas.js" type="module"></script>
     <script src="./js/despesas.js" type="module"></script>
